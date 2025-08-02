@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import BackToTop from './components/BackToTop';
+import ToastContainer from './components/ToastContainer';
 import Home from './pages/Home';
 import About from './pages/About';
 import ComputerScience from './pages/ComputerScience';
@@ -10,6 +12,8 @@ import LiteraturePhilosophy from './pages/LiteraturePhilosophy';
 import HistorySocialSciences from './pages/HistorySocialSciences';
 import Engineering from './pages/Engineering';
 import ScienceNews from './pages/ScienceNews';
+import Notes from './pages/Notes';
+import CompetitiveExams from './pages/CompetitiveExams';
 import './styles/App.css';
 
 function App() {
@@ -27,9 +31,13 @@ function App() {
   if (isLoading) {
     return (
       <div className="loading-screen">
-        <div className="loading-spinner">
-          <h1>📚 ScholarVault</h1>
-          <p>Loading amazing resources...</p>
+        <div className="loading-content">
+          <div className="loading-logo">📚</div>
+          <h1 className="loading-title">ScholarVault</h1>
+          <p className="loading-subtitle">Loading amazing resources...</p>
+          <div className="loading-progress">
+            <div className="loading-bar"></div>
+          </div>
         </div>
       </div>
     );
@@ -50,8 +58,12 @@ function App() {
             <Route path="/history-social-sciences" element={<HistorySocialSciences />} />
             <Route path="/engineering" element={<Engineering />} />
             <Route path="/science-news" element={<ScienceNews />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/competitive-exams" element={<CompetitiveExams />} />
           </Routes>
         </main>
+        <BackToTop />
+        <ToastContainer />
       </div>
     </Router>
   );

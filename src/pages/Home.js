@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
+import Card from '../components/Card';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   // Handle internal navigation
   const handleCardClick = (link) => {
@@ -19,25 +23,43 @@ const Home = () => {
       id: 'trending',
       image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       title: '📈 Trending Research',
-      description: 'Most cited papers and trending academic topics this month'
+      description: 'Most cited papers and trending academic topics this month',
+      link: 'https://scholar.google.com/scholar?q=trending+research+2024'
     },
     {
       id: 'professors',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       title: '👨‍🏫 Professor\'s Choice',
-      description: 'Hand-picked resources by leading academics worldwide'
+      description: 'Hand-picked resources by leading academics worldwide',
+      link: 'https://www.edx.org/'
     },
     {
       id: 'publications',
       image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       title: '🆕 New Publications',
-      description: 'Latest peer-reviewed articles and research publications'
+      description: 'Latest peer-reviewed articles and research publications',
+      link: 'https://arxiv.org/'
     },
     {
       id: 'rated',
       image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       title: '⭐ Best Rated',
-      description: 'Top-rated academic content by students and faculty'
+      description: 'Top-rated academic content by students and faculty',
+      link: 'https://www.coursera.org/courses?query=top%20rated'
+    },
+    {
+      id: 'notes',
+      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      title: '📝 Study Notes',
+      description: 'Comprehensive notes and summaries from top students and educators',
+      link: '/notes'
+    },
+    {
+      id: 'competitive-exams',
+      image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      title: '🎯 Competitive Exams',
+      description: 'Preparation resources for entrance exams and government jobs',
+      link: '/competitive-exams'
     }
   ];
 
@@ -241,6 +263,48 @@ const Home = () => {
     }
   ];
 
+  // Handle search functionality
+  const handleSearch = (searchTerm) => {
+    console.log('Search called with:', searchTerm); // Debug log
+    setIsSearching(!!searchTerm);
+    if (searchTerm) {
+      // Additional Notes and Competitive Exams resources for search
+      const notesResources = [
+        { id: 'notes-page', title: '📝 Study Notes', description: 'Comprehensive notes and summaries from top students and educators', link: '/notes', image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 'mit-notes', title: '🎓 MIT OpenCourseWare', description: 'Free lecture notes and course materials from MIT', link: 'https://ocw.mit.edu/', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 'khan-notes', title: '📋 Khan Academy Notes', description: 'Quick revision notes and summaries for exam preparation', link: 'https://www.khanacademy.org/', image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
+      ];
+      
+      const examResources = [
+        { id: 'exams-page', title: '🎯 Competitive Exams', description: 'Preparation resources for entrance exams and government jobs', link: '/competitive-exams', image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 'jee-neet', title: '🎯 JEE & NEET Preparation', description: 'Engineering and medical entrance exam preparation materials', link: 'https://www.nta.ac.in/', image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 'gate-prep', title: '🔧 GATE Preparation', description: 'Graduate Aptitude Test in Engineering preparation resources', link: 'https://gate.iisc.ac.in/', image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+        { id: 'upsc-prep', title: '🏛️ UPSC Civil Services', description: 'Civil services examination and government job preparation', link: 'https://www.upsc.gov.in/', image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
+      ];
+
+      // Simple search simulation - filters through cards
+      const allResources = [
+        ...featuredCards,
+        ...booksCards,
+        ...technicalBooksCards,
+        ...technicalArticlesCards,
+        ...newsCards,
+        ...notesResources,
+        ...examResources
+      ];
+      
+      const filtered = allResources.filter(resource =>
+        resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        resource.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      
+      console.log('Filtered results:', filtered); // Debug log
+      setSearchResults(filtered);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
   return (
     <div className="home">
       {/* Hero Section */}
@@ -251,6 +315,30 @@ const Home = () => {
           <p className="hero-description">
             Discover comprehensive resources for students and professors across all academic disciplines
           </p>
+          
+          {/* Search Bar */}
+          <div className="hero-search">
+            <SearchBar 
+              onSearch={handleSearch}
+              placeholder="🔍 Search thousands of academic resources..."
+            />
+          </div>
+          
+          {/* Quick Stats */}
+          <div className="hero-stats">
+            <div className="stat-item">
+              <span className="stat-number">10,000+</span>
+              <span className="stat-label">Resources</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">15</span>
+              <span className="stat-label">Subjects</span>
+            </div>
+            <div className="stat-item">
+              <span className="stat-number">24/7</span>
+              <span className="stat-label">Access</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -368,6 +456,72 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Additional Resources Section */}
+      <section id="additional-resources" className="section">
+        <div className="section-container">
+          <h2 className="section-title">🎯 Additional Learning Resources</h2>
+          <p className="section-description">
+            Expand your learning with our specialized collections of study materials and exam preparation resources
+          </p>
+          <div className="cards-container">
+            <div className="card card-clickable" onClick={() => handleCardClick('/notes')}>
+              <div className="card-image">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Study Notes" loading="lazy" />
+                <div className="card-overlay"></div>
+              </div>
+              <div className="card-content">
+                <h3 className="card-title">📝 Study Notes</h3>
+                <p className="card-description">Comprehensive handwritten and typed notes from top students and educators across all academic disciplines</p>
+                <button className="card-button">📖 Browse Notes</button>
+              </div>
+            </div>
+            <div className="card card-clickable" onClick={() => handleCardClick('/competitive-exams')}>
+              <div className="card-image">
+                <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Competitive Exams" loading="lazy" />
+                <div className="card-overlay"></div>
+              </div>
+              <div className="card-content">
+                <h3 className="card-title">🎯 Competitive Exams</h3>
+                <p className="card-description">Complete preparation resources for JEE, NEET, GATE, UPSC, CAT, and other major competitive examinations</p>
+                <button className="card-button">🚀 Start Preparation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Search Results Section */}
+      {isSearching && (
+        <section className="search-results section">
+          <div className="section-container">
+            <h2 className="section-title">
+              🔍 Search Results ({searchResults.length} found)
+            </h2>
+            {searchResults.length > 0 ? (
+              <div className="cards-container">
+                {searchResults.map((result, index) => (
+                  <Card
+                    key={`search-${result.id || index}`}
+                    image={result.image}
+                    title={result.title}
+                    description={result.description}
+                    link={result.link}
+                    buttonText="🔗 Access Resource"
+                    isClickable={true}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="no-results">
+                <span className="no-results-icon">🔍</span>
+                <h3 className="no-results-title">No results found</h3>
+                <p className="no-results-text">Try different keywords or browse our categories above!</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Contact Section */}
       <section id="contact" className="section section-contact">

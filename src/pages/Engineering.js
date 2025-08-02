@@ -23,6 +23,16 @@ const Engineering = () => {
       title: 'ASME Standards',
       description: 'Professional engineering standards and codes for mechanical engineers.',
       url: 'https://www.asme.org/codes-standards'
+    },
+    {
+      title: 'Engineering Toolbox',
+      description: 'Comprehensive resource for mechanical engineering calculations and data.',
+      url: 'https://www.engineeringtoolbox.com/'
+    },
+    {
+      title: 'ANSYS Learning Hub',
+      description: 'Free simulation software tutorials for mechanical analysis.',
+      url: 'https://www.ansys.com/academic/learning-resources'
     }
   ];
 
@@ -46,6 +56,16 @@ const Engineering = () => {
       title: 'Electronics Tutorials',
       description: 'Comprehensive tutorials on electronics and electrical circuits.',
       url: 'https://www.electronics-tutorials.ws/'
+    },
+    {
+      title: 'CircuitLab',
+      description: 'Online circuit simulator and schematic editor.',
+      url: 'https://www.circuitlab.com/'
+    },
+    {
+      title: 'Khan Academy - Electrical Engineering',
+      description: 'Free courses on circuits, electronics, and electrical principles.',
+      url: 'https://www.khanacademy.org/science/electrical-engineering'
     }
   ];
 
@@ -69,6 +89,16 @@ const Engineering = () => {
       title: 'Concrete Design Handbook',
       description: 'Guide to reinforced concrete design and construction.',
       url: 'https://www.cement.org/learn/concrete-technology'
+    },
+    {
+      title: 'Bridge Design Manual',
+      description: 'Comprehensive guide to bridge engineering and design.',
+      url: 'https://www.fhwa.dot.gov/bridge/lrfd/'
+    },
+    {
+      title: 'Geotechnical Engineering',
+      description: 'Soil mechanics and foundation engineering resources.',
+      url: 'https://www.geoengineer.org/'
     }
   ];
 
@@ -92,6 +122,16 @@ const Engineering = () => {
       title: 'Embedded Systems Programming',
       description: 'Resources for embedded software and hardware development.',
       url: 'https://www.embedded.com/'
+    },
+    {
+      title: 'VHDL Tutorial',
+      description: 'Learn hardware description language for digital design.',
+      url: 'https://www.nandland.com/vhdl/tutorials/tutorial-introduction-to-vhdl.html'
+    },
+    {
+      title: 'FPGA Development',
+      description: 'Field-Programmable Gate Array design and programming.',
+      url: 'https://www.intel.com/content/www/us/en/programmable/support/training/overview.html'
     }
   ];
 
@@ -115,6 +155,82 @@ const Engineering = () => {
       title: 'Process Safety Management',
       description: 'Guidelines for safe chemical process design and operation.',
       url: 'https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.119'
+    },
+    {
+      title: 'ChemE Car Competition',
+      description: 'Student design competition for chemical engineering students.',
+      url: 'https://www.aiche.org/community/students/chem-e-car-competition'
+    },
+    {
+      title: 'Process Design Fundamentals',
+      description: 'Chemical process design principles and methodologies.',
+      url: 'https://ocw.mit.edu/courses/10-492-integrated-chemical-engineering-topics-i-process-control-by-design-fall-2004/'
+    }
+  ];
+
+  const aerospaceResources = [
+    {
+      title: 'NASA Educational Resources',
+      description: 'Free aerospace engineering courses and materials from NASA.',
+      url: 'https://www.nasa.gov/audience/foreducators/postsecondary/features/F_Aerospace_Engineering.html'
+    },
+    {
+      title: 'Introduction to Aerospace Engineering',
+      description: 'MIT OpenCourseWare aerospace fundamentals.',
+      url: 'https://ocw.mit.edu/courses/16-00-introduction-to-aerospace-engineering-and-design-spring-2003/'
+    },
+    {
+      title: 'AIAA Student Resources',
+      description: 'American Institute of Aeronautics and Astronautics materials.',
+      url: 'https://www.aiaa.org/secondary.aspx?id=2147'
+    },
+    {
+      title: 'Aircraft Design Online',
+      description: 'Comprehensive guide to aircraft design principles.',
+      url: 'https://www.aircraftdesign.com/'
+    },
+    {
+      title: 'Rocket Propulsion Elements',
+      description: 'Fundamentals of rocket and spacecraft propulsion.',
+      url: 'https://www.wiley.com/en-us/Rocket+Propulsion+Elements%2C+9th+Edition-p-9781118753668'
+    },
+    {
+      title: 'CFD Online',
+      description: 'Computational fluid dynamics resources for aerospace applications.',
+      url: 'https://www.cfd-online.com/'
+    }
+  ];
+
+  const industrialResources = [
+    {
+      title: 'Lean Manufacturing Principles',
+      description: 'Guide to lean production and waste elimination.',
+      url: 'https://www.lean.org/whatslean/'
+    },
+    {
+      title: 'Six Sigma Resources',
+      description: 'Quality improvement methodologies and tools.',
+      url: 'https://www.isixsigma.com/'
+    },
+    {
+      title: 'Operations Research',
+      description: 'Mathematical optimization and decision analysis.',
+      url: 'https://www.informs.org/Explore/Operations-Research-Analytics'
+    },
+    {
+      title: 'Supply Chain Management',
+      description: 'Modern supply chain design and optimization.',
+      url: 'https://www.apics.org/apics-for-individuals/apics-magazine-home'
+    },
+    {
+      title: 'Ergonomics and Human Factors',
+      description: 'Workplace design for safety and efficiency.',
+      url: 'https://www.hfes.org/web/Default.aspx'
+    },
+    {
+      title: 'Production Planning Systems',
+      description: 'Manufacturing resource planning and scheduling.',
+      url: 'https://ocw.mit.edu/courses/15-760b-operations-management-spring-2004/'
     }
   ];
 
@@ -142,7 +258,7 @@ const Engineering = () => {
   ];
 
   return (
-    <div>
+    <div className="engineering-page">
       <Section title="Engineering Resources">
         <p className="section-description">
           Comprehensive resources for engineering students across all major disciplines. 
@@ -151,89 +267,85 @@ const Engineering = () => {
         </p>
       </Section>
 
-      <Section title="Mechanical Engineering">
-        <div className="cards-grid">
-          {mechanicalResources.map((resource, index) => (
-            <Card 
-              key={index}
-              title={resource.title}
-              description={resource.description}
-              buttonText="Access Resource"
-              onClick={() => window.open(resource.url, '_blank')}
-            />
-          ))}
-        </div>
-      </Section>
+      <Section title="Mechanical Engineering" cards={mechanicalResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
 
-      <Section title="Electrical Engineering">
-        <div className="cards-grid">
-          {electricalResources.map((resource, index) => (
-            <Card 
-              key={index}
-              title={resource.title}
-              description={resource.description}
-              buttonText="Access Resource"
-              onClick={() => window.open(resource.url, '_blank')}
-            />
-          ))}
-        </div>
-      </Section>
+      <Section title="Electrical Engineering" cards={electricalResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
 
-      <Section title="Civil Engineering">
-        <div className="cards-grid">
-          {civilResources.map((resource, index) => (
-            <Card 
-              key={index}
-              title={resource.title}
-              description={resource.description}
-              buttonText="Access Resource"
-              onClick={() => window.open(resource.url, '_blank')}
-            />
-          ))}
-        </div>
-      </Section>
+      <Section title="Civil Engineering" cards={civilResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
 
-      <Section title="Computer Engineering">
-        <div className="cards-grid">
-          {computerEngineeringResources.map((resource, index) => (
-            <Card 
-              key={index}
-              title={resource.title}
-              description={resource.description}
-              buttonText="Access Resource"
-              onClick={() => window.open(resource.url, '_blank')}
-            />
-          ))}
-        </div>
-      </Section>
+      <Section title="Computer Engineering" cards={computerEngineeringResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
 
-      <Section title="Chemical Engineering">
-        <div className="cards-grid">
-          {chemicalResources.map((resource, index) => (
-            <Card 
-              key={index}
-              title={resource.title}
-              description={resource.description}
-              buttonText="Access Resource"
-              onClick={() => window.open(resource.url, '_blank')}
-            />
-          ))}
-        </div>
-      </Section>
+      <Section title="Chemical Engineering" cards={chemicalResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
 
-      <Section title="Professional Development">
-        <div className="cards-grid">
-          {generalResources.map((resource, index) => (
-            <Card 
-              key={index}
-              title={resource.title}
-              description={resource.description}
-              buttonText="Access Resource"
-              onClick={() => window.open(resource.url, '_blank')}
-            />
-          ))}
-        </div>
-      </Section>
+      <Section title="Aerospace Engineering" cards={aerospaceResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
+
+      <Section title="Industrial Engineering" cards={industrialResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1565008447742-97d5ac26469e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
+
+      <Section title="Professional Development" cards={generalResources.map(resource => ({
+        id: resource.title,
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+        title: resource.title,
+        description: resource.description,
+        isClickable: true,
+        external: true,
+        onClick: () => window.open(resource.url, '_blank')
+      }))} />
     </div>
   );
 };

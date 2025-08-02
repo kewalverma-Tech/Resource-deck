@@ -7,7 +7,8 @@ const Card = ({
   description, 
   onClick, 
   link, 
-  isClickable = false,
+  buttonText = 'View Resource',
+  isClickable = true,
   external = false,
   className = '',
   ...props 
@@ -40,7 +41,7 @@ const Card = ({
     if (onClick) {
       onClick();
     } else if (link) {
-      if (external) {
+      if (link.startsWith('http')) {
         window.open(link, '_blank', 'noopener,noreferrer');
       } else {
         navigate(link);
@@ -82,18 +83,17 @@ const Card = ({
           <img 
             src={image} 
             alt={title}
-            className="card__image"
             loading="lazy"
             onError={handleImageError}
           />
         )}
         {hasError && (
-          <div className="card__image-placeholder">
+          <div className="card-image-placeholder">
             <span>📚</span>
           </div>
         )}
         {!isImageLoaded && !hasError && (
-          <div className="card__image-skeleton">
+          <div className="card-image-skeleton">
             <div className="skeleton-loader"></div>
           </div>
         )}
@@ -105,8 +105,8 @@ const Card = ({
         <p className="card-description">{description}</p>
         
         {isClickable && (
-          <button className="card-button">
-            {external ? '🔗 External Link' : '📖 View Resources'}
+          <button className="card-button" onClick={!isClickable ? handleClick : undefined}>
+            {buttonText}
           </button>
         )}
       </div>

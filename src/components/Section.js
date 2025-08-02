@@ -12,10 +12,10 @@ const Section = ({
   return (
     <section id={id} className={`section ${className}`} {...props}>
       <div className="section__container">
-        <h2 className="section__title">{title}</h2>
+        <h2 className="section-title">{title}</h2>
         
         {cards.length > 0 && (
-          <div className="cards-container">
+          <div className="section__cards">
             {cards.map((card, index) => (
               <Card 
                 key={card.id || index}
