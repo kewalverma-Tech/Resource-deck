@@ -36,7 +36,7 @@ function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/scholarvault">
       <div className="App">
         <Header />
         <main className="main-content">
