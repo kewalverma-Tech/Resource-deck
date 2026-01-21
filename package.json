@@ -1,44 +1,41 @@
 {
-  "name": "scholarvault-react",
+  "name": "scholarvault",
   "version": "1.0.0",
-  "private": true,
-  "description": "ScholarVault - A modern React-based academic resource platform",
-  "homepage": "https://kewalverma-Tech.github.io/scholarvault",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.8.0",
-    "react-scripts": "5.0.1"
-  },
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ],
-    "rules": {
-      "no-unused-vars": "warn"
-    }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kewalverma-Tech/scholarvault.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/kewalverma-Tech/scholarvault/issues"
+  },
+  "homepage": "https://github.com/kewalverma-Tech/scholarvault#readme",
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.28.1",
+    "gsap": "^3.14.2",
+    "lucide-react": "^0.562.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.12.0",
+    "tailwind-merge": "^3.4.0",
+    "vite": "^6.4.1"
   },
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
   }
 }

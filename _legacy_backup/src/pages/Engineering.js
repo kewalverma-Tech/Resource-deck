@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '../components/Card';
 import Section from '../components/Section';
 
 const Engineering = () => {
